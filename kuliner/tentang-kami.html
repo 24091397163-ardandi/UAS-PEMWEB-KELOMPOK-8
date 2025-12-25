@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Kuliner Nusantara</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Apply dark mode immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>🍲 Resep Makanan Khas Nusantara 🍲</h1>
+        <p>Jelajahi Kekayaan Rasa Kuliner Tradisional Indonesia</p>
+        <nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="Index.Html">Beranda</a></li>
+                <li><a href="kritik-saran.html">Kritik dan Saran</a></li>
+                <li><a href="tentang-kami.html">Tentang Kami</a></li>
+            </ul>
+        </nav>
+        <button id="dark-mode-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <main>
+        <button id="back-to-home" class="back-button">← Kembali ke Beranda</button>
+
+        <section id="about">
+            <h2>Tentang Kami</h2>
+            <p>Selamat datang di Kuliner Nusantara, platform digital yang didedikasikan untuk melestarikan dan mempromosikan kekayaan kuliner tradisional Indonesia. Kami percaya bahwa makanan adalah jembatan budaya yang menghubungkan generasi dan daerah.</p>
+        </section>
+
+        <section id="vision-mission">
+            <h2>Visi dan Misi</h2>
+            <div class="vision-mission-container">
+                <div class="vision">
+                    <h3>Visi</h3>
+                    <p>Menjadi platform terdepan dalam pelestarian dan promosi kuliner nusantara, menghubungkan pecinta makanan dengan resep-resep autentik dari seluruh Indonesia.</p>
+                </div>
+                <div class="mission">
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Menyediakan koleksi resep lengkap dengan sejarah dan tips memasak</li>
+                        <li>Mendorong inovasi kuliner sambil menjaga keaslian tradisi</li>
+                        <li>Membangun komunitas pecinta kuliner nusantara</li>
+                        <li>Mengedukasi masyarakat tentang pentingnya pelestarian kuliner lokal</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="team">
+            <h2>Tim Kami</h2>
+            <p>Kenali tim di balik Kuliner Nusantara yang berdedikasi untuk melestarikan kuliner Indonesia.</p>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150/8B4513/FFFFFF?text=Chef+A" alt="Mada">
+                    <h3>Mada</h3>
+                    <p>Pencipta web</p>
+                    <p>Bertanggung jawab atas penemuan ide untuk web ini</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150/A0522D/FFFFFF?text=Dev+B" alt="Arif">
+                    <h3>Arif</h3>
+                    <p>Developer & Desainer Web</p>
+                    <p>Arif bertanggung jawab atas pengembangan dan desain website ini, memastikan pengalaman pengguna yang optimal.</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150/5D4037/FFFFFF?text=Writer+C" alt="Ardandi">
+                    <h3>Ardandi</h3>
+                    <p>Pencipta web</p>
+                    <p>Bertanggung jawab atas penemuan ide untuk web ini</p>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Resep Nusantara.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

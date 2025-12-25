@@ -1,0 +1,580 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --bg-color: #f4f1ea;
+    --text-color: #333;
+    --header-bg: #8B4513;
+    --header-text: white;
+    --card-bg: white;
+    --card-shadow: rgba(0,0,0,0.1);
+    --modal-bg: #fff;
+    --feedback-bg: #fff;
+    --detail-bg: #fff;
+    --input-border: #ddd;
+    --button-bg: #8B4513;
+    --button-hover: #A0522D;
+    --feedback-item-bg: #f9f9f9;
+    --feedback-border: #8B4513;
+    --tip-bg: #fff;
+    --heading-color: #5D4037;
+    --close-hover: #333;
+}
+
+html.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1e1e1e;
+    --header-text: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-shadow: rgba(255,255,255,0.1);
+    --modal-bg: #2a2a2a;
+    --feedback-bg: #2a2a2a;
+    --detail-bg: #2a2a2a;
+    --input-border: #555;
+    --button-bg: #333;
+    --button-hover: #555;
+    --feedback-item-bg: #333;
+    --feedback-border: #555;
+    --tip-bg: #2a2a2a;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+#dark-mode-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--button-bg);
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark-mode #dark-mode-toggle {
+    color: white;
+}
+
+#dark-mode-toggle:hover {
+    background-color: var(--button-hover);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 5rem; /* Position left of dark mode toggle */
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--header-bg);
+        padding: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    header nav ul.show {
+        display: flex;
+    }
+
+    header nav ul li {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        display: block;
+        padding: 0.5rem 1rem;
+    }
+}
+
+main {
+    padding: 2rem;
+}
+
+.recipe-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.recipe-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-card h3 {
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+    color: var(--heading-color);
+}
+
+/* Style untuk Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+    animation: fadeIn 0.5s;
+    transition: background-color 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--close-hover);
+}
+
+#modal-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+#modal-ingredients {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+
+
+/* Feedback Section */
+#feedback {
+    background-color: var(--feedback-bg);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
+}
+
+#feedback h2 {
+    text-align: center;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+}
+
+#feedback-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+#feedback-form button {
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+#feedback-form button:hover {
+    background-color: #A0522D;
+}
+
+#feedback-list {
+    margin-top: 2rem;
+}
+
+#feedback-list h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+#feedback-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#feedback-list li {
+    background-color: var(--feedback-item-bg);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    border-left: 4px solid var(--feedback-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style untuk halaman detail */
+#recipe-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--detail-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+#recipe-detail h2 {
+    text-align: center;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+#detail-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    margin: 1rem auto;
+    display: block;
+}
+
+#detail-history {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+#detail-ingredients {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 2rem;
+}
+
+#detail-instructions p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none;
+}
+
+#back-button {
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+#back-button:hover {
+    background-color: #A0522D;
+}
+
+/* Style untuk halaman tips memasak */
+.tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tip-card {
+    background-color: var(--tip-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.tip-card h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.tip-card p {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.tip-card ol {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.tip-card li {
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* Style untuk halaman tentang kami */
+.vision-mission-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.vision, .mission {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.vision h3, .mission h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.vision p, .mission li {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.mission ul {
+    padding-left: 20px;
+}
+
+.mission li {
+    margin-bottom: 0.5rem;
+}
+
+
+
+/* Style untuk back button */
+.back-button {
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 1rem 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.back-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Style untuk tim */
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--heading-color);
+}
+
+.team-member h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.team-member p:first-of-type {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p:last-of-type {
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+
+
+
